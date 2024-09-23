@@ -338,7 +338,7 @@ class ee {
   }
 }
 var $o = ee;
-const Re = /* @__PURE__ */ qe($o), ea = {}, ta = {
+const me = /* @__PURE__ */ qe($o), ea = {}, ta = {
   "bidirectionalComm.name": "双方向通信",
   "bidirectionalComm.system.notConnected": "接続してください",
   "bidirectionalComm.system.noLicense": "ライセンスがありません",
@@ -347,11 +347,11 @@ const Re = /* @__PURE__ */ qe($o), ea = {}, ta = {
   "bidirectionalComm.system.reachedSendingLimit": "通信量が上限に達しました",
   "bidirectionalComm.system.enabledPacketCapture": "パケット解析中",
   "bidirectionalComm.block.connect": "キーワード[KEYWORD]で接続する",
-  "bidirectionalComm.block.getLastSystemMessage": "システム",
+  "bidirectionalComm.block.getLastSystemMessage": "システムメッセージ",
   "bidirectionalComm.block.getNumOfSentMessages": "送信数",
   "bidirectionalComm.block.disconnect": "切断する",
   "bidirectionalComm.block.sendMessage": "[MESSAGE]を送る",
-  "bidirectionalComm.block.shift": "[MESSAGE]を[SHIFT]文字ずらす",
+  "bidirectionalComm.block.shift": "[MESSAGE]を[SHIFT]文字ずらした文字列",
   "bidirectionalComm.block.setChannel": "チャンネル名を[CHANNEL]にする",
   "bidirectionalComm.block.getChannel": "チャンネル名",
   "bidirectionalComm.block.setIpAddress": "IPアドレスを[IP_ADDRESS]にする",
@@ -383,11 +383,11 @@ const Re = /* @__PURE__ */ qe($o), ea = {}, ta = {
     "bidirectionalComm.system.reachedSendingLimit": "つうしんりょうがじょうげんにたっしました",
     "bidirectionalComm.system.enabledPacketCapture": "パケットかいせきちゅう",
     "bidirectionalComm.block.connect": "キーワード[KEYWORD]でせつぞくする",
-    "bidirectionalComm.block.getLastSystemMessage": "システム",
+    "bidirectionalComm.block.getLastSystemMessage": "システムメッセージ",
     "bidirectionalComm.block.getNumOfSentMessages": "そうしんすう",
     "bidirectionalComm.block.disconnect": "せつだんする",
     "bidirectionalComm.block.sendMessage": "[MESSAGE]をおくる",
-    "bidirectionalComm.block.shift": "[MESSAGE]を[SHIFT]もじずらす",
+    "bidirectionalComm.block.shift": "[MESSAGE]を[SHIFT]もじずらしたもじれつ",
     "bidirectionalComm.block.setChannel": "チャンネルめいを[CHANNEL]にする",
     "bidirectionalComm.block.getChannel": "チャンネルめい",
     "bidirectionalComm.block.setIpAddress": "IPアドレスを[IP_ADDRESS]にする",
@@ -2004,7 +2004,7 @@ Released under the Apache Licence v2.0*/
           errorMessage: this.errorMessage
         };
       }
-    }, me = Ji, Jn = class Ye {
+    }, ye = Ji, Jn = class Ye {
       /**
        * Overload toJSON() to intercept JSON.stringify()
        * @return {*}
@@ -2148,7 +2148,7 @@ Released under the Apache Licence v2.0*/
       }
       async list(e) {
         const t = this.client, n = t.options.useBinaryProtocol ? "msgpack" : "json", s = this.client.http.supportsLinkHeaders ? void 0 : n, i = S.defaultGetHeaders(t.options, { format: n });
-        return k(i, t.options.headers), new me(t, "/push/deviceRegistrations", i, s, async function(r, a, l) {
+        return k(i, t.options.headers), new ye(t, "/push/deviceRegistrations", i, s, async function(r, a, l) {
           return Ce.fromResponseBody(
             r,
             t._MsgPack,
@@ -2201,7 +2201,7 @@ Released under the Apache Licence v2.0*/
       }
       async list(t) {
         const n = this.client, s = n.options.useBinaryProtocol ? "msgpack" : "json", i = this.client.http.supportsLinkHeaders ? void 0 : s, r = S.defaultGetHeaders(n.options, { format: s });
-        return k(r, n.options.headers), new me(n, "/push/channelSubscriptions", r, i, async function(a, l, d) {
+        return k(r, n.options.headers), new ye(n, "/push/channelSubscriptions", r, i, async function(a, l, d) {
           return Ot.fromResponseBody(
             a,
             n._MsgPack,
@@ -2215,7 +2215,7 @@ Released under the Apache Licence v2.0*/
       }
       async listChannels(t) {
         const n = this.client, s = n.options.useBinaryProtocol ? "msgpack" : "json", i = this.client.http.supportsLinkHeaders ? void 0 : s, r = S.defaultGetHeaders(n.options, { format: s });
-        return k(r, n.options.headers), n.options.pushFullWait && k(t, { fullWait: "true" }), new me(n, "/push/channels", r, i, async function(a, l, d) {
+        return k(r, n.options.headers), n.options.pushFullWait && k(t, { fullWait: "true" }), new ye(n, "/push/channels", r, i, async function(a, l, d) {
           const u = !d && s ? ne(a, n._MsgPack, s) : a;
           for (let f = 0; f < u.length; f++)
             u[f] = String(u[f]);
@@ -2246,7 +2246,7 @@ Released under the Apache Licence v2.0*/
       return e.name && (t += e.name.length), e.clientId && (t += e.clientId.length), e.extras && (t += JSON.stringify(e.extras).length), e.data && (t += Rn(e.data)), t;
     }
     async function Fn(e, t, n, s) {
-      const i = ye(n), r = tr(t, e, s ?? null);
+      const i = be(n), r = tr(t, e, s ?? null);
       try {
         await Le(i, r);
       } catch (a) {
@@ -2349,7 +2349,7 @@ Released under the Apache Licence v2.0*/
     async function or(e, t, n, s, i) {
       i && (e = ne(e, s, i));
       for (let r = 0; r < e.length; r++) {
-        const a = e[r] = ye(e[r]);
+        const a = e[r] = be(e[r]);
         try {
           await Le(a, t);
         } catch (l) {
@@ -2358,13 +2358,13 @@ Released under the Apache Licence v2.0*/
       }
       return e;
     }
-    function ye(e) {
+    function be(e) {
       return Object.assign(new Yn(), e);
     }
     function Ct(e) {
       const t = e.length, n = new Array(t);
       for (let s = 0; s < t; s++)
-        n[s] = ye(e[s]);
+        n[s] = be(e[s]);
       return n;
     }
     function St(e) {
@@ -2495,7 +2495,7 @@ Released under the Apache Licence v2.0*/
         const t = this.channel.client, n = t.options.useBinaryProtocol ? "msgpack" : "json", s = this.channel.client.http.supportsLinkHeaders ? void 0 : n, i = S.defaultGetHeaders(t.options, { format: n });
         k(i, t.options.headers);
         const r = this.channel.channelOptions;
-        return new me(
+        return new ye(
           t,
           this.channel.client.rest.presenceMixin.basePath(this),
           i,
@@ -2540,9 +2540,9 @@ Released under the Apache Licence v2.0*/
         const t = e[0], n = e[1];
         let s, i;
         if (typeof t == "string" || t === null)
-          s = [ye({ name: t, data: n })], i = e[2];
+          s = [be({ name: t, data: n })], i = e[2];
         else if (Oe(t))
-          s = [ye(t)], i = e[1];
+          s = [be(t)], i = e[1];
         else if (Array.isArray(t))
           s = Ct(t), i = e[1];
         else
@@ -2598,7 +2598,7 @@ Released under the Apache Licence v2.0*/
         const n = e.client, s = n.options.useBinaryProtocol ? "msgpack" : "json", i = e.client.http.supportsLinkHeaders ? void 0 : s, r = S.defaultGetHeaders(n.options, { format: s });
         k(r, n.options.headers);
         const a = e.channelOptions;
-        return new me(n, this.basePath(e) + "/messages", r, i, async function(l, d, u) {
+        return new ye(n, this.basePath(e) + "/messages", r, i, async function(l, d, u) {
           return await or(
             l,
             a,
@@ -2627,7 +2627,7 @@ Released under the Apache Licence v2.0*/
         const n = e.channel.client, s = n.options.useBinaryProtocol ? "msgpack" : "json", i = e.channel.client.http.supportsLinkHeaders ? void 0 : s, r = S.defaultGetHeaders(n.options, { format: s });
         k(r, n.options.headers);
         const a = e.channel.channelOptions;
-        return new me(n, this.basePath(e) + "/history", r, i, async function(l, d, u) {
+        return new ye(n, this.basePath(e) + "/history", r, i, async function(l, d, u) {
           return await $n(
             l,
             a,
@@ -2643,7 +2643,7 @@ Released under the Apache Licence v2.0*/
       }
       async stats(e) {
         const t = S.defaultGetHeaders(this.client.options), n = this.client.options.useBinaryProtocol ? "msgpack" : "json", s = this.client.http.supportsLinkHeaders ? void 0 : n;
-        return k(t, this.client.options.headers), new me(this.client, "/stats", t, s, function(i, r, a) {
+        return k(t, this.client.options.headers), new ye(this.client, "/stats", t, s, function(i, r, a) {
           const l = a ? i : JSON.parse(i);
           for (let d = 0; d < l.length; d++)
             l[d] = yr.fromValues(l[d]);
@@ -2685,7 +2685,7 @@ Released under the Apache Licence v2.0*/
         s = s || {};
         const g = e.toLowerCase(), w = g == "get" ? S.defaultGetHeaders(this.client.options, { format: u, protocolVersion: n }) : S.defaultPostHeaders(this.client.options, { format: u, protocolVersion: n });
         typeof i != "string" && (i = (a = l(i)) != null ? a : null), k(w, this.client.options.headers), r && k(w, r);
-        const I = new me(
+        const I = new ye(
           this.client,
           t,
           w,
@@ -3024,7 +3024,7 @@ Released under the Apache Licence v2.0*/
       const s = e.messages;
       if (s)
         for (let r = 0; r < s.length; r++)
-          s[r] = ye(s[r]);
+          s[r] = be(s[r]);
       const i = t ? e.presence : void 0;
       if (t && i && t)
         for (let r = 0; r < i.length; r++)
@@ -3192,7 +3192,7 @@ Released under the Apache Licence v2.0*/
       constructor(e, t, n, s) {
         this.previous = e, this.current = t, n && (this.retryIn = n), s && (this.reason = s);
       }
-    }, it = Er, be = {
+    }, it = Er, Ie = {
       DISCONNECTED: 80003,
       SUSPENDED: 80002,
       FAILED: 8e4,
@@ -3203,57 +3203,57 @@ Released under the Apache Licence v2.0*/
     }, Pr = {
       disconnected: () => m.fromValues({
         statusCode: 400,
-        code: be.DISCONNECTED,
+        code: Ie.DISCONNECTED,
         message: "Connection to server temporarily unavailable"
       }),
       suspended: () => m.fromValues({
         statusCode: 400,
-        code: be.SUSPENDED,
+        code: Ie.SUSPENDED,
         message: "Connection to server unavailable"
       }),
       failed: () => m.fromValues({
         statusCode: 400,
-        code: be.FAILED,
+        code: Ie.FAILED,
         message: "Connection failed or disconnected by server"
       }),
       closing: () => m.fromValues({
         statusCode: 400,
-        code: be.CLOSING,
+        code: Ie.CLOSING,
         message: "Connection closing"
       }),
       closed: () => m.fromValues({
         statusCode: 400,
-        code: be.CLOSED,
+        code: Ie.CLOSED,
         message: "Connection closed"
       }),
       unknownConnectionErr: () => m.fromValues({
         statusCode: 500,
-        code: be.UNKNOWN_CONNECTION_ERR,
+        code: Ie.UNKNOWN_CONNECTION_ERR,
         message: "Internal connection error"
       }),
       unknownChannelErr: () => m.fromValues({
         statusCode: 500,
-        code: be.UNKNOWN_CONNECTION_ERR,
+        code: Ie.UNKNOWN_CONNECTION_ERR,
         message: "Internal channel error"
       })
     };
     function _r(e) {
-      return !e.statusCode || !e.code || e.statusCode >= 500 ? !0 : Object.values(be).includes(e.code);
+      return !e.statusCode || !e.code || e.statusCode >= 500 ? !0 : Object.values(Ie).includes(e.code);
     }
-    var Ie = Pr, Gr = ae({ action: E.CLOSE }), Br = ae({ action: E.DISCONNECT }), Nr = class extends V {
+    var Re = Pr, Gr = ae({ action: E.CLOSE }), Br = ae({ action: E.DISCONNECT }), Nr = class extends V {
       constructor(e, t, n, s) {
         super(e.logger), s && (n.format = void 0, n.heartbeats = !0), this.connectionManager = e, this.auth = t, this.params = n, this.timeouts = n.options.timeouts, this.format = n.format, this.isConnected = !1, this.isFinished = !1, this.isDisposed = !1, this.maxIdleInterval = null, this.idleTimer = null, this.lastActivity = null;
       }
       connect() {
       }
       close() {
-        this.isConnected && this.requestClose(), this.finish("closed", Ie.closed());
+        this.isConnected && this.requestClose(), this.finish("closed", Re.closed());
       }
       disconnect(e) {
-        this.isConnected && this.requestDisconnect(), this.finish("disconnected", e || Ie.disconnected());
+        this.isConnected && this.requestDisconnect(), this.finish("disconnected", e || Re.disconnected());
       }
       fail(e) {
-        this.isConnected && this.requestDisconnect(), this.finish("failed", e || Ie.failed());
+        this.isConnected && this.requestDisconnect(), this.finish("failed", e || Re.failed());
       }
       finish(e, t) {
         var n;
@@ -3848,7 +3848,7 @@ Released under the Apache Licence v2.0*/
       }
       getStateError() {
         var t, n;
-        return (n = (t = Ie)[this.state.state]) == null ? void 0 : n.call(t);
+        return (n = (t = Re)[this.state.state]) == null ? void 0 : n.call(t);
       }
       activeState() {
         return this.state.queueEvents || this.state.sendEvents;
@@ -3992,7 +3992,7 @@ Released under the Apache Licence v2.0*/
           this.state.state,
           a.state,
           l,
-          t.error || ((s = (n = Ie)[a.state]) == null ? void 0 : s.call(n))
+          t.error || ((s = (n = Re)[a.state]) == null ? void 0 : s.call(n))
         );
         if (r) {
           const u = () => {
@@ -4028,7 +4028,7 @@ Released under the Apache Licence v2.0*/
           this.state.state,
           r.state,
           null,
-          t.error || ((s = (n = Ie)[r.state]) == null ? void 0 : s.call(n))
+          t.error || ((s = (n = Re)[r.state]) == null ? void 0 : s.call(n))
         );
         this.enactStateChange(a), i == "connecting" && y.Config.nextTick(() => {
           this.startConnect();
@@ -4588,7 +4588,7 @@ Released under the Apache Licence v2.0*/
           throw this.connectionManager.getError();
         if (s == 1)
           if (Oe(n))
-            n = [ye(n)];
+            n = [be(n)];
           else if (Array.isArray(n))
             n = Ct(n);
           else
@@ -4598,7 +4598,7 @@ Released under the Apache Licence v2.0*/
               400
             );
         else
-          n = [ye({ name: t[0], data: t[1] })];
+          n = [be({ name: t[0], data: t[1] })];
         const i = this.client.options.maxMessageSize;
         await Xn(n, this.channelOptions);
         const r = St(n);
@@ -4867,7 +4867,7 @@ Released under the Apache Licence v2.0*/
               o.LOG_ERROR,
               "RealtimeChannel.processMessage()",
               "Fatal protocol error: unrecognised action (" + t.action + ")"
-            ), this.connectionManager.abort(Ie.unknownChannelErr());
+            ), this.connectionManager.abort(Re.unknownChannelErr());
         }
       }
       _startDecodeFailureRecovery(t) {
@@ -6274,7 +6274,7 @@ Released under the Apache Licence v2.0*/
         }
       }
       dispose() {
-        o.logAction(this.logger, o.LOG_MINOR, "CometTransport.dispose()", ""), this.isDisposed || (this.isDisposed = !0, this.recvRequest && (o.logAction(this.logger, o.LOG_MINOR, "CometTransport.dispose()", "aborting recv request"), this.recvRequest.abort(), this.recvRequest = null), this.finish("disconnected", Ie.disconnected()), y.Config.nextTick(() => {
+        o.logAction(this.logger, o.LOG_MINOR, "CometTransport.dispose()", ""), this.isDisposed || (this.isDisposed = !0, this.recvRequest && (o.logAction(this.logger, o.LOG_MINOR, "CometTransport.dispose()", "aborting recv request"), this.recvRequest.abort(), this.recvRequest = null), this.finish("disconnected", Re.disconnected()), y.Config.nextTick(() => {
           this.emit("disposed");
         }));
       }
@@ -7290,10 +7290,14 @@ class ga extends da {
     return this._channelName ? (h.name = "multicast", h.data = {
       text: c,
       header: {
+        from: this._ipAddress,
         channel: this._channelName
       }
     }) : (h.name = "broadcast", h.data = {
-      text: c
+      text: c,
+      header: {
+        from: this._ipAddress
+      }
     }), await this._send(h);
   }
   /**
@@ -7309,7 +7313,10 @@ class ga extends da {
         to: h
       }
     }) : (p.name = "broadcast", p.data = {
-      text: c
+      text: c,
+      header: {
+        from: this._ipAddress
+      }
     }), await this._send(p);
   }
   /**
@@ -7397,7 +7404,7 @@ class lt {
    */
   constructor(c) {
     this.runtime = c, this.server = new ga();
-    const h = new URLSearchParams(window.location.search), p = h.get("id"), b = h.get("block") ?? "trial", C = h.get("keyword") ?? " ";
+    const h = new URLSearchParams(window.location.search), p = h.get("id") ?? "00000000NH", b = h.get("block") ?? "trial", C = h.get("keyword") ?? " ";
     console.log("ID:", p), console.log("Block Type:", b), console.log("Default Keyword:", C), this.block = b, this.keyword = C, this.license = null, p && this.fetchLicense(p), this.isEnabledPacketCapture = !1, this.lastSentMessage = null, this.numOfSentMessages = 0, this.server.on("sent", (O) => {
       this.lastSentMessage = O, this.numOfSentMessages += 1, this.runtime.startHats(ot + "_whenSentMessage");
     }), this.lastReceivedMessage = null, this.server.on("received", (O) => {
@@ -7448,7 +7455,7 @@ class lt {
       this.setNoLicenseMessage();
       return;
     }
-    const h = Kt(Re.toString(c.KEYWORD));
+    const h = Kt(me.toString(c.KEYWORD));
     if (!h) {
       this.lastSystemMessage = {
         id: "bidirectionalComm.system.noKeyword",
@@ -7484,7 +7491,7 @@ class lt {
     }
     if (!this.checkNumOfSentMessages() || !this.server.isConnected)
       return;
-    const h = Re.toString(c.MESSAGE);
+    const h = me.toString(c.MESSAGE);
     await this.server.send(h) && await this.waitAfterSend();
   }
   shift(c) {
@@ -7493,7 +7500,7 @@ class lt {
         id: "bidirectionalComm.system.noLicense",
         default: "ライセンスがありません"
       });
-    const h = Re.toString(c.MESSAGE), p = Re.toNumber(c.SHIFT);
+    const h = me.toString(c.MESSAGE), p = ya(c.SHIFT);
     return h.split("").map((b) => b.codePointAt(0)).map((b) => String.fromCodePoint(b + p)).join("");
   }
   setChannel(c) {
@@ -7501,7 +7508,7 @@ class lt {
       this.setNoLicenseMessage();
       return;
     }
-    const h = Kt(Re.toString(c.CHANNEL));
+    const h = Kt(me.toString(c.CHANNEL));
     this.server.setChannelName(h);
   }
   getChannel() {
@@ -7512,7 +7519,7 @@ class lt {
       this.setNoLicenseMessage();
       return;
     }
-    const h = Kt(Re.toString(c.IP_ADDRESS));
+    const h = Kt(me.toString(c.IP_ADDRESS));
     this.server.setIpAddress(h);
   }
   getIpAddress() {
@@ -7525,7 +7532,7 @@ class lt {
     }
     if (!this.checkNumOfSentMessages() || !this.server.isConnected)
       return;
-    const h = Re.toString(c.MESSAGE), p = Re.toString(c.IP_ADDRESS);
+    const h = me.toString(c.MESSAGE), p = me.toString(c.IP_ADDRESS);
     await this.server.sendToIpAddress(h, p) && await this.waitAfterSend();
   }
   enablePacketCapture() {
@@ -7637,7 +7644,7 @@ class lt {
         opcode: "getLastSystemMessage",
         text: _({
           id: "bidirectionalComm.block.getLastSystemMessage",
-          default: "システム"
+          default: "システムメッセージ"
         }),
         blockType: Z.REPORTER
       },
@@ -7680,7 +7687,7 @@ class lt {
         opcode: "shift",
         text: _({
           id: "bidirectionalComm.block.shift",
-          default: "[MESSAGE]を[SHIFT]文字ずらす"
+          default: "[MESSAGE]を[SHIFT]文字ずらした文字列"
         }),
         blockType: Z.REPORTER,
         arguments: {
@@ -7782,41 +7789,6 @@ class lt {
     ), c.blocks.push(
       "---",
       {
-        opcode: "whenSentMessage",
-        text: _({
-          id: "bidirectionalComm.block.whenSentMessage",
-          default: "メッセージを送ったとき"
-        }),
-        blockType: Z.EVENT,
-        isEdgeActivated: !1
-      },
-      {
-        opcode: "getLastSentMessageText",
-        text: _({
-          id: "bidirectionalComm.block.getLastSentMessageText",
-          default: "送信メッセージ"
-        }),
-        blockType: Z.REPORTER
-      }
-    ), this.shouldShowBasicBlocks() && c.blocks.push(
-      {
-        opcode: "getLastSentMessageHeader",
-        text: _({
-          id: "bidirectionalComm.block.getLastSentMessageHeader",
-          default: "送信パケットの[HEADER]"
-        }),
-        blockType: Z.REPORTER,
-        arguments: {
-          HEADER: {
-            type: le.STRING,
-            menu: "HEADER",
-            defaultValue: "to"
-          }
-        }
-      }
-    ), c.blocks.push(
-      "---",
-      {
         opcode: "whenReceivedMessage",
         text: _({
           id: "bidirectionalComm.block.whenReceivedMessage",
@@ -7849,10 +7821,45 @@ class lt {
           }
         }
       }
+    ), c.blocks.push(
+      "---",
+      {
+        opcode: "whenSentMessage",
+        text: _({
+          id: "bidirectionalComm.block.whenSentMessage",
+          default: "メッセージを送ったとき"
+        }),
+        blockType: Z.EVENT,
+        isEdgeActivated: !1
+      },
+      {
+        opcode: "getLastSentMessageText",
+        text: _({
+          id: "bidirectionalComm.block.getLastSentMessageText",
+          default: "送信メッセージ"
+        }),
+        blockType: Z.REPORTER
+      }
+    ), this.shouldShowBasicBlocks() && c.blocks.push(
+      {
+        opcode: "getLastSentMessageHeader",
+        text: _({
+          id: "bidirectionalComm.block.getLastSentMessageHeader",
+          default: "送信パケットの[HEADER]"
+        }),
+        blockType: Z.REPORTER,
+        arguments: {
+          HEADER: {
+            type: le.STRING,
+            menu: "HEADER",
+            defaultValue: "to"
+          }
+        }
+      }
     ), c;
   }
 }
-const Kt = (R) => R.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 65248));
+const Kt = (R) => R.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 65248)), ya = (R) => typeof R == "string" ? me.toNumber(R.replace(/[０-９．]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 65248))) : me.toNumber(R);
 export {
   lt as blockClass,
   lt as default
