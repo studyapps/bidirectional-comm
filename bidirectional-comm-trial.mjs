@@ -7413,13 +7413,13 @@ class lt {
    */
   constructor(c) {
     this.runtime = c, this.server = new pa();
-    const h = new URLSearchParams(window.location.search), p = h.get("id") ?? "00000000NH", b = "trial", v = h.get("keyword");
+    const h = new URLSearchParams(window.location.search), p = h.get("id") ?? "AH05B23F11", b = "trial", v = h.get("keyword");
     console.log("ID:", p), console.log("Block Type:", b), console.log("Initial Keyword:", v), this.block = b, this.keyword = v || null, this.license = null, p && this.fetchLicense(p), this.isEnabledPacketCapture = !1, this.lastSentMessage = null, this.numOfSentMessages = 0, this.server.on("sent", (O) => {
       this.lastSentMessage = O, this.numOfSentMessages += 1, this.runtime.startHats(ot + "_whenSentMessage");
     }), this.lastReceivedMessage = null, this.server.on("received", (O) => {
-      this.isEnabledPacketCapture || (this.lastReceivedMessage = O, this.runtime.startHats(ot + "_whenReceivedMessage"));
+      this.checkNumOfSentMessages() && (this.isEnabledPacketCapture || (this.lastReceivedMessage = O, this.runtime.startHats(ot + "_whenReceivedMessage")));
     }), this.server.on("packet", (O) => {
-      this.isEnabledPacketCapture && (this.lastReceivedMessage = O, this.runtime.startHats(ot + "_whenReceivedMessage"));
+      this.checkNumOfSentMessages() && this.isEnabledPacketCapture && (this.lastReceivedMessage = O, this.runtime.startHats(ot + "_whenReceivedMessage"));
     }), this.lastSystemMessage = {
       id: "bidirectionalComm.system.notConnected",
       default: "接続してください"
@@ -7433,12 +7433,21 @@ class lt {
       console.log("fetch error:", h);
     }
   }
+  /**
+   * @returns {boolean}
+   */
   shouldShowBasicBlocks() {
     return this.block == "basic";
   }
+  /**
+   * @returns {boolean}
+   */
   hasTrialLicense() {
     return this.license == "trial" || this.license == "basic";
   }
+  /**
+   * @returns {boolean}
+   */
   hasBasicLicense() {
     return this.license == "basic";
   }
@@ -7448,6 +7457,9 @@ class lt {
       default: "ライセンスがありません"
     };
   }
+  /**
+   * @returns {boolean}
+   */
   checkNumOfSentMessages() {
     const c = this.hasBasicLicense() ? 1e3 : 50, h = this.numOfSentMessages < c;
     return h || (this.lastSystemMessage = {
